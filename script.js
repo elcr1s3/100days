@@ -1,29 +1,24 @@
+// VARIABLES
+const modal = document.querySelector(".modal"),
+  modalContent = document.querySelector(".modal-content"),
+  btn = document.querySelector(".btn"),
+  close = document.querySelector(".close");
 
-const count = document.querySelector(".count");
-const buttons = document.querySelector(".buttons");
+btn.addEventListener("click", openModal);
+close.addEventListener("click", closeModal);
+modal.addEventListener("click", closeModal);
 
-buttons.addEventListener("click", (e) => {
-  if (e.target.classList.contains("add")) {
-    count.innerHTML++;
-    setColor();
-  }
-  if (e.target.classList.contains("subtract")) {
-    count.innerHTML--;
-    setColor();
-  }
-  if (e.target.classList.contains("reset")) {
-    count.innerHTML = 0;
-    setColor();
-  }
-});
-
-function setColor() {
-  if (count.innerHTML > 0) {
-    count.style.color = "black";
-  } else if (count.innerHTML < 0) {
-    count.style.color = "orangered";
-  } else {
-    count.style.color = "#fff";
-  }
+// OPEN MODAL
+function openModal(e) {
+  e.preventDefault();
+  modal.style.display = "block";
 }
+// CLOSE MODAL
+function closeModal() {
+  modalContent.classList.add("slide-up");
 
+  setTimeout(() => {
+    modal.style.display = "none";
+    modalContent.classList.remove("slide-up");
+  }, 500);
+}
